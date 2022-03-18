@@ -5,9 +5,9 @@ async function main () {
   try {
     const pool = mysql.createPool({
       connectionLimit: 10,
-      host: process.env.DB_HOST || '172.17.0.2:3306',
-      user: process.env.DB_USER || 'root',
-      password: process.env.DB_PASS || 'brasil',
+      host: process.env.DB_HOST || 'localhost',
+      user: process.env.DB_USER || 'applicationuser',
+      password: process.env.DB_PASS || 'applicationuser',
       database: process.env.DB_NAME || 'movie_db'
     })
     pool.query = util.promisify(pool.query)
@@ -36,7 +36,21 @@ async function main () {
     ]
     await pool.query(reviewersQuery, [reviewersValues])
 
-    const moviesQuery = 'INSERT INTO movies (title, release_year, score, reviewer, publication) VALUES ?'
+   /* const moviesQuery = 'INSERT INTO movies (title, release, score, reviewer, publication) VALUES ?'
+    const moviesValues = [
+      ['Suicide Squad', '2016', 8, 'Robert Smith', 'The Daily Reviewer'],
+      ['Batman vs. Superman', '2016', 6, 'Chris Harris', 'International Movie Critic'],
+      ['Captain America: Civil War', '2016', 9, 'Janet Garcia', 'MoviesNow'],
+      ['Deadpool', '2016', 9, 'Andrew West', 'MyNextReview'],
+      ['Avengers: Age of Ultron', '2015', 7, 'Mindy Lee', 'Movies n\' Games'],
+      ['Ant-Man', '2015', 8, 'Martin Thomas', 'TheOne'],
+      ['Guardians of the Galaxy', '2014', 10, 'Anthony Miller', 'ComicBookHero.com'],
+      ['Doctor Strange', '2016', 7, 'Anthony Miller', 'ComicBookHero.com'],
+      ['Superman: Homecoming', '2017', 10, 'Chris Harris', 'International Movie Critic'],
+      ['Wonder Woman', '2017', 8, 'Martin Thomas', 'TheOne']
+    ]*/
+
+    const moviesQuery = 'INSERT INTO movies (title, release, score, reviewer, publication) VALUES ?'
     const moviesValues = [
       ['Suicide Squad', '2016', 8, 'Robert Smith', 'The Daily Reviewer'],
       ['Batman vs. Superman', '2016', 6, 'Chris Harris', 'International Movie Critic'],

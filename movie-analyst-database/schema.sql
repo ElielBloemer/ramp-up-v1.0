@@ -31,6 +31,7 @@ CREATE TABLE `movies` (
 	`release` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`score` INT NULL DEFAULT NULL,
 	`reviewer` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`publication` VARCHAR(250) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	PRIMARY KEY (`title`) USING BTREE,
 	INDEX `reviewer_id` (`reviewer`) USING BTREE,
 	CONSTRAINT `reviewer_id` FOREIGN KEY (`reviewer`) REFERENCES `movie_db`.`reviewers` (`name`) ON UPDATE NO ACTION ON DELETE NO ACTION

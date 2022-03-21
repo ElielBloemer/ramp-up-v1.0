@@ -1,8 +1,5 @@
--- SET @user = "alex";
-
 -- CREATE SCHEMA `movie_db` ;
 use `movie_db`;
-
 
 CREATE TABLE `publications` (
 	`name` VARCHAR(250) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',

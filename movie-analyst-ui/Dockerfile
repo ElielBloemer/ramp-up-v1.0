@@ -1,8 +1,9 @@
-FROM node:latest
+FROM node:alpine3.15
 
 COPY . . 
 
-ENV BACKEND_URL=172.17.0.1:3000
+#local backend
+ENV BACKEND_URL ${BACKEND_URL}         
 
 ENV FRONTEND_PORT=8000
 

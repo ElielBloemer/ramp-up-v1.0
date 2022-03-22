@@ -1,22 +1,23 @@
-FROM node:latest
+FROM node:alpine3.15
 
 COPY . .
 
-ENV DB_HOST=172.17.0.2
+# Base de datos
+ENV DB_HOST ${DB_HOST}   
+ENV DB_USER ${DB_USER}        
+ENV DB_PASS ${DB_PASS}      
+ENV DB_NAME ${DB_NAME}        
 
-ENV DB_USER=root
-
-ENV DB_PASS=brasil
-
-ENV DB_NAME=movie_db
 
 ENV BACKEND_PORT=3000
 
 EXPOSE 3000
 
-RUN npm install 
+RUN apk update
 
-RUN ls
+RUN apk add mysql mysql-client 
+
+RUN npm install 
 
 CMD ["npm","start"]
 

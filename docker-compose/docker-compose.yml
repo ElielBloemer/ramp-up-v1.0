@@ -1,24 +1,26 @@
 version: '3.5'
 services:
  movie-analyst-api:
-    image: elielbloemer/image-api
+    image: ${IMAGE_API}  
+    environment:
+       - DB_HOST=${DB_HOST} 
+       - DB_USER=${DB_USER}
+       - DB_PASS=${DB_PASS}
+       - DB_NAME=${DB_NAME}
+    env_file:
+       - .env 
     container_name: container-api
     ports:
             - "3000:3000"
+
  movie-analyst-ui:
-   image: elielbloemer/image-ui
+   image: ${IMAGE_UI} 
+   environment:
+      - BACKEND_URL=${BACKEND_URL} 
    container_name: container-ui
    ports: 
-           - "8000:8000"
- db:
-   image: mysql:latest
-   container_name: movie_db
-   ports:
-      - "3306:3306"
-   volumes: 
-      - ./home/ebloemer/ramp-up-v1.0/movie-analyst-database:/databases/schema.sql
-      - ./home/ebloemer/ramp-up-v1.0/movie-analyst-database:/databases/data.sql
-   environment:
-      MYSQL_ROOT_PASSWORD: brasil
-      MYSQL_DATABASE: movie_db
+           - "80:8000"
+   depends_on:
+     - movie-analyst-api
+
  
